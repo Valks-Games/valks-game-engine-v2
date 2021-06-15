@@ -18,8 +18,8 @@ void processInput(GLFWwindow *window)
 
 int main() 
 {
-	major = 4;
-	minor = 6;
+	int major = 4;
+	int minor = 6;
 
 	// Initialize GLFW
 	glfwInit();

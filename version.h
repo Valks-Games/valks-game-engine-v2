@@ -1,4 +1,4 @@
 #pragma once
 
-int major;
-int minor;
+extern int major;
+extern int minor;
