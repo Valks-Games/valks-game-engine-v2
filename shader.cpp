@@ -1,4 +1,5 @@
 #include "shader.h"
+#include "version.h"
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath) : ID(0)
 {
@@ -28,12 +29,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath) : ID(0)
     std::string vertexCode;
     std::string fragmentCode;
 
-    int major, minor;
-
-    glfwGetVersion(&major, &minor, nullptr);
-
-    std::string version;
-    version = "#version " + std::to_string(major) + std::to_string(minor) + "0 core\n\n";
+    std::string version = "#version " + std::to_string(major) + std::to_string(minor) + "0 core\n\n";
 
     vertexCode = version + vShaderStream.str();
     fragmentCode = version + fShaderStream.str();
