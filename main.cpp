@@ -3,9 +3,13 @@
 #include <iostream>
 
 #include "shader.h"
-#include "version.h"
+#include "mesh.h"
+#include "common.h"
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+const int GLFW_VER_MAJOR = 4;
+const int GLFW_VER_MINOR = 6;
+
+void framebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
 }
@@ -18,13 +22,10 @@ void processInput(GLFWwindow *window)
 
 int main() 
 {
-	int major = 4;
-	int minor = 6;
-
 	// Initialize GLFW
 	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, GLFW_VER_MAJOR);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, GLFW_VER_MINOR);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Create a window
@@ -45,7 +46,7 @@ int main()
 	}
 
 	glViewport(0, 0, 800, 600);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 
 	// Shaders
 	Shader shader("shader.vert", "shader.frag");
@@ -58,12 +59,14 @@ int main()
 		-0.5f,  0.5f, 0.0f   // top left 
 	};
 
-	unsigned int indices[] = {  // note that we start from 0!
+	int indices[] = {  // note that we start from 0!
 		0, 1, 3,   // first triangle
 		1, 2, 3    // second triangle
 	};
 
-	unsigned int VBO, VAO, EBO;
+	Mesh mesh(vertices, indices);
+
+	/*unsigned int VBO, VAO, EBO;
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
@@ -80,7 +83,7 @@ int main()
 	glEnableVertexAttribArray(0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	glBindVertexArray(0);*/
 
 	// Wireframe Mode
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -96,7 +99,8 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		shader.use();
-		glBindVertexArray(VAO);
+		//glBindVertexArray(VAO);
+		mesh.bind();
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 
@@ -105,8 +109,9 @@ int main()
 		glfwSwapBuffers(window);
 	}
 
-	glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
+	//glDeleteVertexArrays(1, &VAO);
+    //glDeleteBuffers(1, &VBO);
+	mesh.clean();
     glDeleteProgram(shader.ID);
 
 	glfwTerminate();

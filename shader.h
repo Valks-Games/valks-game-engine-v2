@@ -8,6 +8,8 @@
 #include <sstream>
 #include <iostream>
 
+enum class ShaderType { VERTEX, FRAGMENT, PROGRAM };
+
 class Shader 
 {
 public:
@@ -22,5 +24,5 @@ public:
 	void setFloat(const std::string& name, float value) const;
 
 private:
-	void checkCompileErrors(unsigned int shader, std::string type);
+	void checkCompileErrors(unsigned int shader, ShaderType type);
 };

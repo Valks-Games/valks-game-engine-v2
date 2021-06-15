@@ -1,5 +1,5 @@
 #include "shader.h"
-#include "version.h"
+#include "common.h"
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath) : ID(0)
 {
@@ -18,7 +18,6 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath) : ID(0)
         std::cerr << "ERROR: Could not open file: \"" << fragmentPath << "\"" << std::endl;
         return;
     }
-
     
     vShaderStream << vShaderFile.rdbuf();
     fShaderStream << fShaderFile.rdbuf();
@@ -29,7 +28,7 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath) : ID(0)
     std::string vertexCode;
     std::string fragmentCode;
 
-    std::string version = "#version " + std::to_string(major) + std::to_string(minor) + "0 core\n\n";
+    std::string version = "#version " + std::to_string(GLFW_VER_MAJOR) + std::to_string(GLFW_VER_MINOR) + "0 core\n\n";
 
     vertexCode = version + vShaderStream.str();
     fragmentCode = version + fShaderStream.str();
@@ -47,20 +46,20 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath) : ID(0)
     vertex = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertex, 1, &vShaderCode, NULL);
     glCompileShader(vertex);
-    checkCompileErrors(vertex, "VERTEX");
+    checkCompileErrors(vertex, ShaderType::VERTEX);
 
     // Fragment
     fragment = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragment, 1, &fShaderCode, NULL);
     glCompileShader(fragment);
-    checkCompileErrors(fragment, "FRAGMENT");
+    checkCompileErrors(fragment, ShaderType::FRAGMENT);
 
     // Create shader program
     ID = glCreateProgram();
     glAttachShader(ID, vertex);
     glAttachShader(ID, fragment);
     glLinkProgram(ID);
-    checkCompileErrors(ID, "PROGRAM");
+    checkCompileErrors(ID, ShaderType::PROGRAM);
 
     glDeleteShader(vertex);
     glDeleteShader(fragment);
@@ -86,13 +85,13 @@ void Shader::setFloat(const std::string& name, float value) const
     glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
 
-void Shader::checkCompileErrors(unsigned int shader, std::string type)
+void Shader::checkCompileErrors(unsigned int shader, ShaderType type)
 {
     int       success;
     const int infoSize = 1024;
     char      infoLog[infoSize];
 
-    if (type != "PROGRAM")
+    if (type != ShaderType::PROGRAM)
     {
         glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
         if (!success)
