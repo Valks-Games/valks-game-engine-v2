@@ -18,6 +18,24 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Core\common.h" />
+    <ClInclude Include="src\Math\math.h" />
+    <ClInclude Include="src\Render\mesh.h" />
+    <ClInclude Include="src\Render\shader.h" />
+    <ClInclude Include="src\Core\window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Core\glad.c" />
+    <ClCompile Include="src\Core\main.cpp" />
+    <ClCompile Include="src\Render\mesh.cpp" />
+    <ClCompile Include="src\Render\shader.cpp" />
+    <ClCompile Include="src\Core\window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Shaders\shader.frag" />
+    <None Include="src\Shaders\shader.vert" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -141,21 +159,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="glad.c" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="mesh.cpp" />
-    <ClCompile Include="shader.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="common.h" />
-    <ClInclude Include="mesh.h" />
-    <ClInclude Include="shader.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="shader.frag" />
-    <None Include="shader.vert" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
