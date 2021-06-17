@@ -9,25 +9,28 @@
 #include <iostream>
 #include "../Math/math.h"
 
-enum class ShaderType { VERTEX, FRAGMENT, PROGRAM };
-
-class Shader 
+namespace valk 
 {
-public:
-	unsigned int ID; // the program ID
+	enum class ShaderType { VERTEX, FRAGMENT, PROGRAM };
 
-	Shader(const char* vertexPath, const char* fragmentPath);
+	class Shader
+	{
+	public:
+		unsigned int ID; // the program ID
 
-	void use();
+		Shader(const char* vertexPath, const char* fragmentPath);
 
-	void setBool(const std::string &name, bool value) const;
-	void setInt(const std::string &name, int value) const;
-	void setFloat(const std::string& name, float value) const;
-	void setColor(const std::string& name, float r, float g, float b, float a) const;
-	void setMat4(const std::string& name, glm::f32* value);
+		void use();
 
-	void clean();
+		void setBool(const std::string& name, bool value) const;
+		void setInt(const std::string& name, int value) const;
+		void setFloat(const std::string& name, float value) const;
+		void setColor(const std::string& name, float r, float g, float b, float a) const;
+		void setMat4(const std::string& name, glm::f32* value) const;
 
-private:
-	void checkCompileErrors(unsigned int shader, ShaderType type);
-};
+		void clean() const;
+
+	private:
+		void checkCompileErrors(unsigned int shader, ShaderType type) const;
+	};
+}

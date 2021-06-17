@@ -3,14 +3,17 @@
 #include <glad/glad.h>
 #include <vector>
 
-class Mesh 
+namespace valk 
 {
-public:
-	unsigned int VAO, VBO, EBO;
-	GLuint m_TriIndexCount;
+	class Mesh
+	{
+	public:
+		unsigned int VAO, VBO, EBO;
+		GLuint m_TriIndexCount;
 
-	Mesh(std::vector<GLfloat> vertices, std::vector<GLuint>, GLenum usage);
+		Mesh(std::vector<GLfloat> vertices, std::vector<GLuint>, GLenum usage);
 
-	void draw();
-	void clean();
-};
+		void draw();
+		void clean();
+	};
+}
