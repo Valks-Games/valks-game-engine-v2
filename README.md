@@ -13,4 +13,6 @@
 1. Go to [GLAD web service](https://glad.dav1d.de)
 2. Set language to `C++`, specification to `OpenGL`, API gl to `Version 4.6`, profile to `Core` and make sure `Generate a loader` is checked
 3. Click `Generate`, download `glad.zip`
-4. Copy contents of `glad/include` to `valks-engine/include` (note that `glad.c` is included in the project)
+4. Copy contents of `glad/include` to `valks-engine/include`
+5. Copy `glad/src/glad.c` to `valks-engine/include`
+6. Make sure `glad.c` is included in the project
