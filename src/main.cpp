@@ -80,8 +80,7 @@ int main()
 	VertexArray vao;
 	VertexBuffer* vbo = new VertexBuffer(vertices, 3 * 3, 3);
 	IndexBuffer ibo(indices, 3);
-
-	vao.addBuffer(vbo, 0);
+	vao.unbind();
 #endif
 
 	// Wireframe Mode
@@ -122,9 +121,7 @@ int main()
 		mesh.draw();
 #else
 		vao.bind();
-		ibo.bind();
-		glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_INT, 0);
-		ibo.unbind();
+		glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_INT, nullptr);
 		vao.unbind();
 #endif
 

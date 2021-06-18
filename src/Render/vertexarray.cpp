@@ -5,6 +5,7 @@ namespace valk
 	VertexArray::VertexArray()
 	{
 		glGenVertexArrays(1, &m_ID);
+		glBindVertexArray(m_ID);
 	}
 
 	VertexArray::~VertexArray() 
@@ -15,15 +16,7 @@ namespace valk
 
 	void VertexArray::addBuffer(VertexBuffer* buffer, GLuint index) 
 	{
-		bind();
-		buffer->bind();
 
-		//                    index, size,                      , type    , normalized, stride, pointer
-		glVertexAttribPointer(index, buffer->getComponentCount(), GL_FLOAT, GL_FALSE, 0, (void*)0);
-		glEnableVertexAttribArray(index);
-
-		buffer->unbind();
-		unbind();
 	}
 
 	void VertexArray::bind() const
