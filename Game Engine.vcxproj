@@ -31,7 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Input\input.cpp" />
-    <ClCompile Include="src\Msc\glad.c" />
+    <ClCompile Include="includes\glad.c" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Render\indexbuffer.cpp" />
     <ClCompile Include="src\Render\mesh.cpp" />
