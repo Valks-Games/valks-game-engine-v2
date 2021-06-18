@@ -1,13 +1,15 @@
 #include "indexbuffer.h"
 
+#include <vector>
+
 namespace valk
 {
-	IndexBuffer::IndexBuffer(GLuint* data, GLsizei count)
+	IndexBuffer::IndexBuffer(std::vector<GLuint> data, GLsizei count) : m_Count(count)
 	{
 		glGenBuffers(1, &m_ID);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(GLfloat), data, GL_STATIC_DRAW);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(GLuint), data.data(), GL_STATIC_DRAW);
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 
 	void IndexBuffer::bind() const

@@ -18,6 +18,7 @@ namespace valk
 		bind();
 		buffer->bind();
 
+		//                    index, size,                      , type    , normalized, stride, pointer
 		glVertexAttribPointer(index, buffer->getComponentCount(), GL_FLOAT, GL_FALSE, 0, (void*)0);
 		glEnableVertexAttribArray(index);
 

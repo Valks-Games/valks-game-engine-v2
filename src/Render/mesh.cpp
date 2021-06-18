@@ -6,9 +6,9 @@ namespace valk
 	{
 		m_TriIndexCount = static_cast<GLuint>(indices.size());
 
-		glGenVertexArrays(1, &VAO);
-		glGenBuffers(1, &VBO);
-		glGenBuffers(1, &EBO);
+		glGenVertexArrays(1, &VAO); // 1
+		glGenBuffers(1, &VBO); // 2
+		glGenBuffers(1, &EBO); // 3
 
 		glBindVertexArray(VAO);
 
