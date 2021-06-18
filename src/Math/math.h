@@ -10,4 +10,9 @@ namespace valk::math
 		double x;
 		double y;
 	};
+
+	struct Vertex
+	{
+		glm::fvec3 position;
+	};
 }

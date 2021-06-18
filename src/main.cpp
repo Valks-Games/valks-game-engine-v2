@@ -54,16 +54,6 @@ int main()
 
 #if 0
 	std::vector<GLfloat> vertices{
-		 0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
-		-0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
-		 0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top 
-	};
-
-	std::vector<GLuint> indices{
-		0, 1, 2
-	};
-#else
-	std::vector<GLfloat> vertices{
 		 0.5f, -0.5f, 0.0f,   // bottom right
 		-0.5f, -0.5f, 0.0f,   // bottom left
 		 0.0f,  0.5f, 0.0f    // top 
@@ -72,14 +62,39 @@ int main()
 	std::vector<GLuint> indices{
 		0, 1, 2
 	};
+#else
+	std::vector<GLfloat> positions 
+	{
+		 0.5f, -0.5f, 0.0f,
+		-0.5f, -0.5f, 0.0f,
+		 0.0f,  0.5f, 0.0f
+	};
+
+	std::vector<GLuint> triangles
+	{
+		0, 1, 2
+	};
+
+	std::vector<GLfloat> colors
+	{
+		1.0f, 0.0f, 0.0f, 1.0f,
+		0.0f, 1.0f, 0.0f, 1.0f,
+		0.0f, 0.0f, 1.0f, 1.0f
+	};
+
+	Mesh mesh;
+	mesh.positions = positions;
+	mesh.colors = colors;
+	mesh.triangles = triangles;
+
 #endif
 
 #if 0
 	Mesh mesh(vertices, indices, GL_STATIC_DRAW);
 #else
 	VertexArray vao;
-	VertexBuffer* vbo = new VertexBuffer(vertices, 3 * 3, 3);
-	IndexBuffer ibo(indices, 3);
+	VertexBuffer* vbo = new VertexBuffer(mesh, 3);
+	IndexBuffer ibo(mesh.triangles, 3);
 	vao.unbind();
 #endif
 
@@ -93,7 +108,6 @@ int main()
 
 	//
 	trans = glm::scale(trans, glm::vec3(0.5f, 0.5, 0.5));
-
 
 	while (!window.closed())
 	{
@@ -115,7 +129,7 @@ int main()
 
 		window.clear();
 		shader.use();
-		//shader.setColor("color", pulse, 0, pulse, 1);
+		shader.setColor("color", 1, pulse, 0, 1);
 		shader.setMat4("transform", glm::value_ptr(trans));
 #if 0
 		mesh.draw();

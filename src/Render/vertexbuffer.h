@@ -3,6 +3,9 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "../Math/math.h"
+#include "../Render/mesh.h"
+
 #include <vector>
 
 namespace valk 
@@ -14,7 +17,7 @@ namespace valk
 		GLuint m_ComponentCount;
 
 	public:
-		VertexBuffer(std::vector<GLfloat> data, GLsizei count, GLuint componentCount);
+		VertexBuffer(Mesh mesh, GLuint componentCount);
 
 	public:
 		void bind() const;
