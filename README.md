@@ -1,3 +1,14 @@
+## Setup
+Visual Studio 2019 or Codelite is recommended, it is untested on other development environments.
+
+Start by cloning the repository with `git clone --recursive https://github.com/valkyrienyanko/valks-game-engine-v2.git` (or your fork if you want to edit).
+
+If the repository was cloned non-recursively previously, use `git submodule update --init` to clone the necessary submodules.
+
+This project uses premake5. The binaries are included, so just `cd scripts` and run `vs2019.bat` for visual studio 2019 or `chmod +x codelite.sh` then `./codelite.sh` for codelite on linux.
+
+
+
 ## GLFW
 1. Download GLFW source from their [website](https://www.glfw.org)
 2. Build GLFW source with CMake
