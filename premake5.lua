@@ -49,16 +49,24 @@ project "engine"
 		"glad",
 	}
 
+	defines
+	{
+		"GLFW_INCLUDE_NONE"
+	}
+
 	filter "system:windows"
 		systemversion "latest"
-
 		defines
 		{
-			"GLFW_INCLUDE_NONE"
+			"VE_WIN"
 		}
 		links{"opengl32.lib"}
 	filter "system:linux"
 		systemversion "latest"
+		defines
+		{
+			"VE_LINUX"
+		}
 		links{"pthread","dl","GL","GLU","X11"}
 
 	filter "configurations:Debug"
