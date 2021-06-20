@@ -50,7 +50,7 @@ int main()
 	window.updateViewport();
 
 	// Shaders
-	Shader shader("./res/Shaders/shader.vert", "./res/Shaders/shader.frag");
+	Shader shader("./../res/Shaders/shader.vert", "./../res/Shaders/shader.frag");
 
 #if 0
 	std::vector<GLfloat> vertices{
@@ -125,7 +125,7 @@ int main()
 		auto timeValue = static_cast<float>(glfwGetTime());
 		auto pulse = (sin(timeValue) / 2.0f) + 0.5f;
 
-		trans = glm::rotate(trans, glm::radians(0.01f * pulse), glm::vec3(0.0, 0.0, 1.0));
+		trans = glm::rotate(trans, glm::radians<float>(0.01f * pulse), glm::vec3(0.0, 0.0, 1.0));
 
 		window.clear();
 		shader.use();
