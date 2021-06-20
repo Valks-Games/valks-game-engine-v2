@@ -50,7 +50,7 @@ int main()
 	window.updateViewport();
 
 	// Shaders
-	Shader shader("./../res/Shaders/shader.vert", "./../res/Shaders/shader.frag");
+	Shader shader("./res/Shaders/shader.vert", "./res/Shaders/shader.frag");
 
 #if 0
 	std::vector<GLfloat> vertices{
