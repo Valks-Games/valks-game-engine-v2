@@ -21,8 +21,6 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 include "vendor/glfw"
 include "vendor/glad"
 
-
-
 project "engine"
 	location "engine"
 	kind "ConsoleApp"
@@ -40,14 +38,8 @@ project "engine"
 		"vendor/glm/glm/**.inl",
 	}
 
-	defines
-	{
-		--"_CRT_SECURE_NO_WARNINGS"
-	}
-
 	includedirs
 	{
-		"src",
 		"vendor/glad/include",
 		"vendor/glfw/include",
 		"vendor/glm",
@@ -64,7 +56,6 @@ project "engine"
 
 		defines
 		{
-			"VE_WIN",
 			"GLFW_INCLUDE_NONE"
 		}
 		links{"opengl32.lib"}
