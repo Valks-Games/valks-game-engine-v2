@@ -34,8 +34,6 @@ project "engine"
 	{
 		"engine/src/**.h",
 		"engine/src/**.cpp",
-		"vendor/glm/glm/**.hpp",
-		"vendor/glm/glm/**.inl",
 	}
 
 	includedirs
