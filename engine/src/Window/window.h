@@ -14,6 +14,7 @@ namespace valk
 
 		int  m_WindowWidth, m_WindowHeight;
 		bool m_Fullscreen;
+		bool m_VSync;
 
 		const GLFWvidmode* m_Vidmode;
 		GLFWmonitor* m_Monitor;
@@ -28,6 +29,7 @@ namespace valk
 	public:
 		bool closed() const;
 		void update() const;
+		void setVSync(bool enabled);
 		void setClearColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a) const;
 		void clear() const;
 		void printGLContext() const;

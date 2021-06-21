@@ -36,6 +36,16 @@ namespace valk
 		glfwSwapBuffers(m_GLFWwindow);
 	}
 
+	void Window::setVSync(bool enabled) 
+	{
+		if (enabled)
+			glfwSwapInterval(1);
+		else
+			glfwSwapInterval(0);
+
+		m_VSync = enabled;
+	}
+
 	void Window::setClearColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a) const
 	{
 		glClearColor(r, g, b, a);
