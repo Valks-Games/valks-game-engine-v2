@@ -10,7 +10,7 @@ namespace valk
 	class Mesh
 	{
 	private:
-		GLuint vaoId;
+		//GLuint vaoId;
 	public:
 		std::vector<GLfloat> positions;
 		std::vector<GLfloat> colors;

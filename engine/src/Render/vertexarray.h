@@ -11,8 +11,8 @@ namespace valk
 	class VertexArray
 	{
 	private:
-		GLuint m_ID;
-		std::vector<VertexBuffer*> m_VertexBuffers;
+		GLuint id;
+		std::vector<VertexBuffer*> vertexBuffers;
 
 	public:
 		VertexArray();

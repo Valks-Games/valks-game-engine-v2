@@ -12,6 +12,7 @@
 #include "Render/VertexBuffer.h"
 #include "Render/IndexBuffer.h"
 #include "Render/VertexArray.h"
+#include "Core/Engine.h"
 
 using namespace valk;
 
@@ -128,20 +129,24 @@ int main()
 
 	window.SetVSync(true);
 
+	Engine engine;
+
 	while (!window.Closed())
 	{
 		double currentTime = glfwGetTime();
-
 		double deltaTime = currentTime - lastFrameTime;
-
 		lastFrameTime = currentTime;
+
+		engine.Update();
+
+		
 
 		std::cout << (deltaTime * 1000) << " ms" << std::endl;
 
 		//window.displayFPS();
 
 		if (Input::GetKeyDown(GLFW_KEY_ESCAPE))
-			glfwSetWindowShouldClose(window.m_GLFWwindow, true);
+			glfwSetWindowShouldClose(window.GLFWwindow, true);
 
 		if (Input::GetKeyUp(GLFW_KEY_F11))
 			window.ToggleFullscreen();

@@ -4,14 +4,14 @@ namespace valk
 {
 	VertexArray::VertexArray()
 	{
-		glGenVertexArrays(1, &m_ID);
-		glBindVertexArray(m_ID);
+		glGenVertexArrays(1, &id);
+		glBindVertexArray(id);
 	}
 
 	VertexArray::~VertexArray() 
 	{
-		for (int i = 0; i < m_VertexBuffers.size(); i++) 
-			delete m_VertexBuffers[i];
+		for (int i = 0; i < vertexBuffers.size(); i++) 
+			delete vertexBuffers[i];
 	}
 
 	void VertexArray::AddBuffer(VertexBuffer* buffer, GLuint index) 
@@ -21,7 +21,7 @@ namespace valk
 
 	void VertexArray::Bind() const
 	{
-		glBindVertexArray(m_ID);
+		glBindVertexArray(id);
 	}
 
 	void VertexArray::Unbind() const

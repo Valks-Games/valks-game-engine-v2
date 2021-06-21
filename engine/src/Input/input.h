@@ -27,9 +27,9 @@ namespace valk
 	class Input
 	{
 	public:
-		GLFWwindow* m_Window;
+		GLFWwindow* window;
 
-		bool m_CursorInWindow;
+		bool cursorInWindow;
 
 		static inline vec2 m_MousePosition;
 		static inline bool m_KeysDown[MAX_KEYS];

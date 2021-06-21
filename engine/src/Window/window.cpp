@@ -4,14 +4,14 @@ namespace valk
 {
 	Window::Window(const char* title, int width, int height)
 	{
-		m_GLFWwindow = glfwCreateWindow(width, height, title, NULL, NULL);
-		m_WindowWidth = width;
-		m_WindowHeight = height;
-		m_Fullscreen = false;
-		m_Monitor = glfwGetPrimaryMonitor();
-		m_Vidmode = glfwGetVideoMode(m_Monitor);
+		GLFWwindow = glfwCreateWindow(width, height, title, NULL, NULL);
+		windowWidth = width;
+		windowHeight = height;
+		fullscreen = false;
+		monitor = glfwGetPrimaryMonitor();
+		vidmode = glfwGetVideoMode(monitor);
 
-		if (m_GLFWwindow == NULL)
+		if (GLFWwindow == NULL)
 		{
 			std::cout << "Failed to create GLFW window" << std::endl;
 			glfwTerminate();
@@ -19,21 +19,21 @@ namespace valk
 
 		AlignToCenter(width, height);
 
-		glfwMakeContextCurrent(m_GLFWwindow);
-		glfwSetWindowUserPointer(m_GLFWwindow, this);
+		glfwMakeContextCurrent(GLFWwindow);
+		glfwSetWindowUserPointer(GLFWwindow, this);
 
-		m_PreviousTime = glfwGetTime();
+		previousTime = glfwGetTime();
 	}
 
 	bool Window::Closed() const
 	{
-		return glfwWindowShouldClose(m_GLFWwindow);
+		return glfwWindowShouldClose(GLFWwindow);
 	}
 
 	void Window::Update() const
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_GLFWwindow);
+		glfwSwapBuffers(GLFWwindow);
 	}
 
 	void Window::SetVSync(bool enabled) 
@@ -43,7 +43,7 @@ namespace valk
 		else
 			glfwSwapInterval(0);
 
-		m_VSync = enabled;
+		vsync = enabled;
 	}
 
 	void Window::SetClearColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a) const
@@ -53,29 +53,29 @@ namespace valk
 
 	void Window::ToggleFullscreen()
 	{
-		auto screenWidth = m_Vidmode->width;
-		auto screenHeight = m_Vidmode->height;
-		auto screenRefreshRate = m_Vidmode->refreshRate;
+		auto screenWidth = vidmode->width;
+		auto screenHeight = vidmode->height;
+		auto screenRefreshRate = vidmode->refreshRate;
 
-		if (!m_Fullscreen)
+		if (!fullscreen)
 		{
-			glfwSetWindowMonitor(m_GLFWwindow, m_Monitor, 0, 0, screenWidth, screenHeight, screenRefreshRate);
+			glfwSetWindowMonitor(GLFWwindow, monitor, 0, 0, screenWidth, screenHeight, screenRefreshRate);
 			UpdateViewport();
 		}
 		else
 		{
-			glfwSetWindowMonitor(m_GLFWwindow, NULL, 0, 0, m_WindowWidth, m_WindowHeight, screenRefreshRate);
-			AlignToCenter(m_WindowWidth, m_WindowHeight);
+			glfwSetWindowMonitor(GLFWwindow, NULL, 0, 0, windowWidth, windowHeight, screenRefreshRate);
+			AlignToCenter(windowWidth, windowHeight);
 			UpdateViewport();
 		}
 
-		m_Fullscreen = !m_Fullscreen;
+		fullscreen = !fullscreen;
 	}
 
 	void Window::UpdateViewport() const
 	{
 		int windowWidth, windowHeight;
-		glfwGetWindowSize(m_GLFWwindow, &windowWidth, &windowHeight);
+		glfwGetWindowSize(GLFWwindow, &windowWidth, &windowHeight);
 
 		glViewport(0, 0, windowWidth, windowHeight);
 	}
@@ -96,28 +96,28 @@ namespace valk
 	void Window::DisplayFPS()
 	{
 		auto currentTime = glfwGetTime();
-		m_FrameCount++;
+		frameCount++;
 
-		if (currentTime - m_PreviousTime >= 1.0f)
+		if (currentTime - previousTime >= 1.0f)
 		{
-			std::cout << m_FrameCount << std::endl;
+			std::cout << frameCount << std::endl;
 
-			m_FrameCount = 0;
-			m_PreviousTime = currentTime;
+			frameCount = 0;
+			previousTime = currentTime;
 		}
 	}
 
 	void Window::AlignToCenter(int windowWidth, int windowHeight) const
 	{
-		auto screenWidth = m_Vidmode->width;
-		auto screenHeight = m_Vidmode->height;
+		auto screenWidth = vidmode->width;
+		auto screenHeight = vidmode->height;
 
 		int monitorX, monitorY;
-		glfwGetMonitorPos(m_Monitor, &monitorX, &monitorY);
+		glfwGetMonitorPos(monitor, &monitorX, &monitorY);
 
 		auto centerX = monitorX + (screenWidth - windowWidth) / 2;
 		auto centerY = monitorY + (screenHeight - windowHeight) / 2;
 
-		glfwSetWindowPos(m_GLFWwindow, centerX, centerY);
+		glfwSetWindowPos(GLFWwindow, centerX, centerY);
 	}
 }

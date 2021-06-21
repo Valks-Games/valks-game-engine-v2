@@ -13,8 +13,8 @@ namespace valk
 	class VertexBuffer 
 	{
 	private:
-		GLuint m_ID;
-		GLuint m_ComponentCount;
+		GLuint id;
+		GLuint componentCount;
 
 	public:
 		VertexBuffer(Mesh mesh, GLuint componentCount);
@@ -22,6 +22,6 @@ namespace valk
 	public:
 		void Bind() const;
 		void Unbind() const;
-		inline GLuint GetComponentCount() { return m_ComponentCount; }
+		inline GLuint GetComponentCount() { return componentCount; }
 	};
 }

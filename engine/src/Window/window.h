@@ -10,18 +10,18 @@ namespace valk
 	class Window
 	{
 	public:
-		GLFWwindow* m_GLFWwindow;
+		GLFWwindow* GLFWwindow;
 
-		int  m_WindowWidth, m_WindowHeight;
-		bool m_Fullscreen;
-		bool m_VSync;
+		int  windowWidth, windowHeight;
+		bool fullscreen;
+		bool vsync;
 
-		const GLFWvidmode* m_Vidmode;
-		GLFWmonitor* m_Monitor;
+		const GLFWvidmode* vidmode;
+		GLFWmonitor* monitor;
 
 		// FPS
-		double m_PreviousTime;
-		int    m_FrameCount;
+		double previousTime;
+		int    frameCount;
 
 	public:
 		Window(const char* title, int width, int height);

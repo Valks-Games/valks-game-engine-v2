@@ -3,7 +3,7 @@
 
 namespace valk 
 {
-    Shader::Shader(const char* vertexPath, const char* fragmentPath) : ID(0)
+    Shader::Shader(const char* vertexPath, const char* fragmentPath) : id(0)
     {
         std::ifstream vShaderFile(vertexPath);
         std::ifstream fShaderFile(fragmentPath);
@@ -54,11 +54,11 @@ namespace valk
         CheckCompileErrors(fragment, ShaderType::FRAGMENT);
 
         // Create shader program
-        ID = glCreateProgram();
-        glAttachShader(ID, vertex);
-        glAttachShader(ID, fragment);
-        glLinkProgram(ID);
-        CheckCompileErrors(ID, ShaderType::PROGRAM);
+        id = glCreateProgram();
+        glAttachShader(id, vertex);
+        glAttachShader(id, fragment);
+        glLinkProgram(id);
+        CheckCompileErrors(id, ShaderType::PROGRAM);
 
         glDeleteShader(vertex);
         glDeleteShader(fragment);
@@ -66,39 +66,39 @@ namespace valk
 
     void Shader::Use()
     {
-        glUseProgram(ID);
+        glUseProgram(id);
     }
 
     void Shader::SetBool(const std::string& name, bool value) const
     {
-        glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
+        glUniform1i(glGetUniformLocation(id, name.c_str()), (int)value);
     }
 
     void Shader::SetInt(const std::string& name, int value) const
     {
-        glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+        glUniform1i(glGetUniformLocation(id, name.c_str()), value);
     }
 
     void Shader::SetFloat(const std::string& name, float value) const
     {
-        glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
+        glUniform1f(glGetUniformLocation(id, name.c_str()), value);
     }
 
     void Shader::SetColor(const std::string& name, float r, float g, float b, float a) const
     {
-        GLint location = glGetUniformLocation(ID, name.c_str());
+        GLint location = glGetUniformLocation(id, name.c_str());
         glUniform4f(location, r, g, b, a);
     }
 
     void Shader::SetMat4(const std::string& name, glm::f32* value) const
     {
-        unsigned int transformLoc = glGetUniformLocation(ID, name.c_str());
+        unsigned int transformLoc = glGetUniformLocation(id, name.c_str());
         glUniformMatrix4fv(transformLoc, 1, GL_FALSE, value);
     }
 
     void Shader::Clean() const
     {
-        glDeleteProgram(ID);
+        glDeleteProgram(id);
     }
 
     void Shader::CheckCompileErrors(unsigned int shader, ShaderType type) const

@@ -16,7 +16,7 @@ namespace valk
 	class Shader
 	{
 	public:
-		unsigned int ID; // the program ID
+		unsigned int id; // the program ID
 
 		Shader(const char* vertexPath, const char* fragmentPath);
 

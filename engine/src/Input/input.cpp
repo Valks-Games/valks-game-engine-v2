@@ -2,19 +2,19 @@
 
 namespace valk 
 {
-	Input::Input(Window* window) : m_CursorInWindow(false)
+	Input::Input(Window* window) : cursorInWindow(false)
 	{
-		m_Window = window->m_GLFWwindow;
+		this->window = window->GLFWwindow;
 
-		glfwSetErrorCallback(ErrorCallback);
-		glfwSetFramebufferSizeCallback(m_Window, FramebufferSizeCallback);
-		glfwSetKeyCallback(m_Window, KeyCallback);
-		glfwSetWindowCloseCallback(m_Window, WindowCloseCallback);
-		glfwSetCharCallback(m_Window, CharacterCallback);
-		glfwSetCursorPosCallback(m_Window, CursorPositionCallback);
-		glfwSetCursorEnterCallback(m_Window, CursorEnterCallback);
-		glfwSetMouseButtonCallback(m_Window, MouseButtonCallback);
-		glfwSetScrollCallback(m_Window, ScrollCallback);
+		glfwSetErrorCallback          (ErrorCallback);
+		glfwSetFramebufferSizeCallback(this->window, FramebufferSizeCallback);
+		glfwSetKeyCallback            (this->window, KeyCallback);
+		glfwSetWindowCloseCallback    (this->window, WindowCloseCallback);
+		glfwSetCharCallback           (this->window, CharacterCallback);
+		glfwSetCursorPosCallback      (this->window, CursorPositionCallback);
+		glfwSetCursorEnterCallback    (this->window, CursorEnterCallback);
+		glfwSetMouseButtonCallback    (this->window, MouseButtonCallback);
+		glfwSetScrollCallback         (this->window, ScrollCallback);
 	}
 
 	// Callbacks
@@ -127,9 +127,9 @@ namespace valk
 		auto win = static_cast<Input*>(glfwGetWindowUserPointer(window));
 
 		if (entered)
-			win->m_CursorInWindow = true;
+			win->cursorInWindow = true;
 		else
-			win->m_CursorInWindow = false;
+			win->cursorInWindow = false;
 	}
 
 	void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
