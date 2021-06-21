@@ -14,17 +14,17 @@ namespace valk
 			delete m_VertexBuffers[i];
 	}
 
-	void VertexArray::addBuffer(VertexBuffer* buffer, GLuint index) 
+	void VertexArray::AddBuffer(VertexBuffer* buffer, GLuint index) 
 	{
 
 	}
 
-	void VertexArray::bind() const
+	void VertexArray::Bind() const
 	{
 		glBindVertexArray(m_ID);
 	}
 
-	void VertexArray::unbind() const
+	void VertexArray::Unbind() const
 	{
 		glBindVertexArray(0);
 	}

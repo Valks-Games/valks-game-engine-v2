@@ -46,8 +46,8 @@ int main()
 	}
 
 	Input input(&window);
-	window.printGLContext();
-	window.updateViewport();
+	window.PrintGLContext();
+	window.UpdateViewport();
 
 	// Shaders
 	Shader shader("./res/Shaders/shader.vert", "./res/Shaders/shader.frag");
@@ -110,13 +110,13 @@ int main()
 	VertexArray vao;
 	VertexBuffer* vbo = new VertexBuffer(mesh, 4);
 	IndexBuffer ibo(mesh.triangles, 3);
-	vao.unbind();
+	vao.Unbind();
 #endif
 
 	// Wireframe Mode
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	window.setClearColor(0, 0, 0, 1);
+	window.SetClearColor(0, 0, 0, 1);
 
 	glm::mat4 trans = glm::mat4(1.0f);
 	//trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
@@ -126,9 +126,9 @@ int main()
 
 	double lastFrameTime = 0.0f;
 
-	window.setVSync(true);
+	window.SetVSync(true);
 
-	while (!window.closed())
+	while (!window.Closed())
 	{
 		double currentTime = glfwGetTime();
 
@@ -140,13 +140,13 @@ int main()
 
 		//window.displayFPS();
 
-		if (Input::getKeyDown(GLFW_KEY_ESCAPE))
+		if (Input::GetKeyDown(GLFW_KEY_ESCAPE))
 			glfwSetWindowShouldClose(window.m_GLFWwindow, true);
 
-		if (Input::getKeyUp(GLFW_KEY_F11))
-			window.toggleFullscreen();
+		if (Input::GetKeyUp(GLFW_KEY_F11))
+			window.ToggleFullscreen();
 
-		if (Input::getMouseButtonUp(GLFW_MOUSE_BUTTON_LEFT))
+		if (Input::GetMouseButtonUp(GLFW_MOUSE_BUTTON_LEFT))
 			std::cout << "(" << Input::m_MousePosition.x << ", " << Input::m_MousePosition.y << ")" << std::endl;
 
 		auto timeValue = static_cast<float>(glfwGetTime());
@@ -154,26 +154,26 @@ int main()
 
 		trans = glm::rotate(trans, glm::radians<float>(0.01f * pulse), glm::vec3(0.0, 0.0, 1.0));
 
-		window.clear();
-		shader.use();
-		shader.setColor("color", 1, pulse, 0, 1);
-		shader.setMat4("transform", glm::value_ptr(trans));
+		window.Clear();
+		shader.Use();
+		shader.SetColor("color", 1, pulse, 0, 1);
+		shader.SetMat4("transform", glm::value_ptr(trans));
 #if 0
 		mesh.draw();
 #else
-		vao.bind();
-		glDrawElements(GL_TRIANGLES, ibo.getCount(), GL_UNSIGNED_INT, nullptr);
-		vao.unbind();
+		vao.Bind();
+		glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr);
+		vao.Unbind();
 #endif
 
-		window.update();
+		window.Update();
 	}
 
 #if 0
 	mesh.clean();
 #else
 #endif
-	shader.clean();
+	shader.Clean();
 
 	glfwTerminate();
 

@@ -6,36 +6,36 @@ namespace valk
 	{
 		m_Window = window->m_GLFWwindow;
 
-		glfwSetErrorCallback(errorCallback);
-		glfwSetFramebufferSizeCallback(m_Window, framebufferSizeCallback);
-		glfwSetKeyCallback(m_Window, keyCallback);
-		glfwSetWindowCloseCallback(m_Window, windowCloseCallback);
-		glfwSetCharCallback(m_Window, characterCallback);
-		glfwSetCursorPosCallback(m_Window, cursorPositionCallback);
-		glfwSetCursorEnterCallback(m_Window, cursorEnterCallback);
-		glfwSetMouseButtonCallback(m_Window, mouseButtonCallback);
-		glfwSetScrollCallback(m_Window, scrollCallback);
+		glfwSetErrorCallback(ErrorCallback);
+		glfwSetFramebufferSizeCallback(m_Window, FramebufferSizeCallback);
+		glfwSetKeyCallback(m_Window, KeyCallback);
+		glfwSetWindowCloseCallback(m_Window, WindowCloseCallback);
+		glfwSetCharCallback(m_Window, CharacterCallback);
+		glfwSetCursorPosCallback(m_Window, CursorPositionCallback);
+		glfwSetCursorEnterCallback(m_Window, CursorEnterCallback);
+		glfwSetMouseButtonCallback(m_Window, MouseButtonCallback);
+		glfwSetScrollCallback(m_Window, ScrollCallback);
 	}
 
 	// Callbacks
-	void errorCallback(int code, const char* description)
+	void ErrorCallback(int code, const char* description)
 	{
 		std::cout << "ERROR: " << code << " " << description << std::endl;
 	}
 
-	void framebufferSizeCallback(GLFWwindow* window, int width, int height)
+	void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
 	}
 
-	void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+	void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
 		Input::m_Keys[key] = action == GLFW_PRESS;
 		Input::m_KeysDown[key] = action == GLFW_PRESS;
 		Input::m_KeysUp[key] = action == GLFW_RELEASE;
 	}
 
-	bool Input::getKeyDown(unsigned int keycode)
+	bool Input::GetKeyDown(unsigned int keycode)
 	{
 		if (m_KeysDown[keycode])
 		{
@@ -48,7 +48,7 @@ namespace valk
 		}
 	}
 
-	bool Input::getKeyUp(unsigned int keycode)
+	bool Input::GetKeyUp(unsigned int keycode)
 	{
 		if (m_KeysUp[keycode])
 		{
@@ -61,19 +61,19 @@ namespace valk
 		}
 	}
 
-	bool Input::getKey(unsigned int keycode)
+	bool Input::GetKey(unsigned int keycode)
 	{
 		return m_Keys[keycode];
 	}
 
-	void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+	void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 	{
 		Input::m_Buttons[button] = action == GLFW_PRESS;
 		Input::m_ButtonsDown[button] = action == GLFW_PRESS;
 		Input::m_ButtonsUp[button] = action == GLFW_RELEASE;
 	}
 
-	bool Input::getMouseButtonDown(unsigned int button) 
+	bool Input::GetMouseButtonDown(unsigned int button) 
 	{
 		if (m_ButtonsDown[button])
 		{
@@ -86,7 +86,7 @@ namespace valk
 		}
 	}
 
-	bool Input::getMouseButtonUp(unsigned int button)
+	bool Input::GetMouseButtonUp(unsigned int button)
 	{
 		if (m_ButtonsUp[button])
 		{
@@ -99,22 +99,22 @@ namespace valk
 		}
 	}
 
-	bool Input::getMouseButton(unsigned int button)
+	bool Input::GetMouseButton(unsigned int button)
 	{
 		return m_Buttons[button];
 	}
 
-	void windowCloseCallback(GLFWwindow* window)
+	void WindowCloseCallback(GLFWwindow* window)
 	{
 		//glfwSetWindowShouldClose(window, GLFW_FALSE);
 	}
 
-	void characterCallback(GLFWwindow* window, unsigned int codepoint)
+	void CharacterCallback(GLFWwindow* window, unsigned int codepoint)
 	{
 		//std::cout << codepoint << std::endl;
 	}
 
-	static void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+	static void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 	{
 		auto win = static_cast<Input*>(glfwGetWindowUserPointer(window));
 
@@ -122,7 +122,7 @@ namespace valk
 		Input::m_MousePosition.y = ypos;
 	}
 
-	void cursorEnterCallback(GLFWwindow* window, int entered)
+	void CursorEnterCallback(GLFWwindow* window, int entered)
 	{
 		auto win = static_cast<Input*>(glfwGetWindowUserPointer(window));
 
@@ -132,7 +132,7 @@ namespace valk
 			win->m_CursorInWindow = false;
 	}
 
-	void scrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+	void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
 	{
 
 	}

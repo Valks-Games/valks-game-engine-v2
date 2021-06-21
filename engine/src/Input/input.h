@@ -14,15 +14,15 @@ namespace valk
 	constexpr unsigned int MAX_KEYS = 1024;
 	constexpr unsigned int MAX_BUTTONS = 32;
 
-	static void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
-	void errorCallback(int code, const char* description);
-	void framebufferSizeCallback(GLFWwindow* window, int width, int height);
-	void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-	void windowCloseCallback(GLFWwindow* window);
-	void characterCallback(GLFWwindow* window, unsigned int codepoint);
-	void cursorEnterCallback(GLFWwindow* window, int entered);
-	void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
-	void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+	static void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
+	void ErrorCallback(int code, const char* description);
+	void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
+	void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+	void WindowCloseCallback(GLFWwindow* window);
+	void CharacterCallback(GLFWwindow* window, unsigned int codepoint);
+	void CursorEnterCallback(GLFWwindow* window, int entered);
+	void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
+	void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
 
 	class Input
 	{
@@ -43,11 +43,11 @@ namespace valk
 		Input(Window* window);
 
 	public:
-		static bool getKey(unsigned int keycode);
-		static bool getKeyDown(unsigned int keycode);
-		static bool getKeyUp(unsigned int keycode);
-		static bool getMouseButton(unsigned int button);
-		static bool getMouseButtonDown(unsigned int button);
-		static bool getMouseButtonUp(unsigned int button);
+		static bool GetKey(unsigned int keycode);
+		static bool GetKeyDown(unsigned int keycode);
+		static bool GetKeyUp(unsigned int keycode);
+		static bool GetMouseButton(unsigned int button);
+		static bool GetMouseButtonDown(unsigned int button);
+		static bool GetMouseButtonUp(unsigned int button);
 	};
 }

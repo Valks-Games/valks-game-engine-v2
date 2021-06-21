@@ -17,8 +17,8 @@ namespace valk
 		IndexBuffer(std::vector<GLuint> data, GLsizei count);
 
 	public:
-		void bind() const;
-		void unbind() const;
-		inline GLsizei getCount() const { return m_Count; }
+		void Bind() const;
+		void Unbind() const;
+		inline GLsizei GetCount() const { return m_Count; }
 	};
 }

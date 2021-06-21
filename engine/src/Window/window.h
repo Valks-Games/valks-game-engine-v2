@@ -27,17 +27,17 @@ namespace valk
 		Window(const char* title, int width, int height);
 
 	public:
-		bool closed() const;
-		void update() const;
-		void setVSync(bool enabled);
-		void setClearColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a) const;
-		void clear() const;
-		void printGLContext() const;
-		void toggleFullscreen();
-		void updateViewport() const;
-		void displayFPS();
+		bool Closed() const;
+		void Update() const;
+		void SetVSync(bool enabled);
+		void SetClearColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a) const;
+		void Clear() const;
+		void PrintGLContext() const;
+		void ToggleFullscreen();
+		void UpdateViewport() const;
+		void DisplayFPS();
 
 	private:
-		void alignToCenter(int windowWidth, int windowHeight) const;
+		void AlignToCenter(int windowWidth, int windowHeight) const;
 	};
 }

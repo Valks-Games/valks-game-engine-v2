@@ -2,7 +2,7 @@
 
 namespace valk 
 {
-	void Mesh::init()
+	void Mesh::Init()
 	{
         
 	}

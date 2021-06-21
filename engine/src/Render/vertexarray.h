@@ -19,8 +19,8 @@ namespace valk
 		~VertexArray();
 
 	public:
-		void addBuffer(VertexBuffer* buffer, GLuint index);
-		void bind() const;
-		void unbind() const;
+		void AddBuffer(VertexBuffer* buffer, GLuint index);
+		void Bind() const;
+		void Unbind() const;
 	};
 }

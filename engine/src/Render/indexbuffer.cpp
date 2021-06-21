@@ -12,12 +12,12 @@ namespace valk
 		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 
-	void IndexBuffer::bind() const
+	void IndexBuffer::Bind() const
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID);
 	}
 
-	void IndexBuffer::unbind() const
+	void IndexBuffer::Unbind() const
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}

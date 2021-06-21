@@ -16,6 +16,6 @@ namespace valk
 		std::vector<GLfloat> colors;
 		std::vector<GLuint>  triangles;
 
-		void init();
+		void Init();
 	};
 }

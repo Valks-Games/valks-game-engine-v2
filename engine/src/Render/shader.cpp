@@ -45,63 +45,63 @@ namespace valk
         vertex = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertex, 1, &vShaderCode, NULL);
         glCompileShader(vertex);
-        checkCompileErrors(vertex, ShaderType::VERTEX);
+        CheckCompileErrors(vertex, ShaderType::VERTEX);
 
         // Fragment
         fragment = glCreateShader(GL_FRAGMENT_SHADER);
         glShaderSource(fragment, 1, &fShaderCode, NULL);
         glCompileShader(fragment);
-        checkCompileErrors(fragment, ShaderType::FRAGMENT);
+        CheckCompileErrors(fragment, ShaderType::FRAGMENT);
 
         // Create shader program
         ID = glCreateProgram();
         glAttachShader(ID, vertex);
         glAttachShader(ID, fragment);
         glLinkProgram(ID);
-        checkCompileErrors(ID, ShaderType::PROGRAM);
+        CheckCompileErrors(ID, ShaderType::PROGRAM);
 
         glDeleteShader(vertex);
         glDeleteShader(fragment);
     }
 
-    void Shader::use()
+    void Shader::Use()
     {
         glUseProgram(ID);
     }
 
-    void Shader::setBool(const std::string& name, bool value) const
+    void Shader::SetBool(const std::string& name, bool value) const
     {
         glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
     }
 
-    void Shader::setInt(const std::string& name, int value) const
+    void Shader::SetInt(const std::string& name, int value) const
     {
         glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
     }
 
-    void Shader::setFloat(const std::string& name, float value) const
+    void Shader::SetFloat(const std::string& name, float value) const
     {
         glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
     }
 
-    void Shader::setColor(const std::string& name, float r, float g, float b, float a) const
+    void Shader::SetColor(const std::string& name, float r, float g, float b, float a) const
     {
         GLint location = glGetUniformLocation(ID, name.c_str());
         glUniform4f(location, r, g, b, a);
     }
 
-    void Shader::setMat4(const std::string& name, glm::f32* value) const
+    void Shader::SetMat4(const std::string& name, glm::f32* value) const
     {
         unsigned int transformLoc = glGetUniformLocation(ID, name.c_str());
         glUniformMatrix4fv(transformLoc, 1, GL_FALSE, value);
     }
 
-    void Shader::clean() const
+    void Shader::Clean() const
     {
         glDeleteProgram(ID);
     }
 
-    void Shader::checkCompileErrors(unsigned int shader, ShaderType type) const
+    void Shader::CheckCompileErrors(unsigned int shader, ShaderType type) const
     {
         int       success;
         const int infoSize = 1024;

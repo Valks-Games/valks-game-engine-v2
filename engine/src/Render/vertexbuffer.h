@@ -20,8 +20,8 @@ namespace valk
 		VertexBuffer(Mesh mesh, GLuint componentCount);
 
 	public:
-		void bind() const;
-		void unbind() const;
-		inline GLuint getComponentCount() { return m_ComponentCount; }
+		void Bind() const;
+		void Unbind() const;
+		inline GLuint GetComponentCount() { return m_ComponentCount; }
 	};
 }
