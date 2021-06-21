@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 
+#include "App.h"
 #include "Render/Shader.h"
 #include "Render/Mesh.h"
 #include "Msc/Common.h"
@@ -12,7 +13,10 @@
 #include "Render/VertexBuffer.h"
 #include "Render/IndexBuffer.h"
 #include "Render/VertexArray.h"
-#include "Core/Engine.h"
+#include "Core/EngineScript.h"
+#include "Core/Time.h"
+#include "Core/GameObject.h"
+#include "Core/Transform.h"
 
 using namespace valk;
 
@@ -84,8 +88,8 @@ int main()
 	for (GLfloat i : colors)
 		data.push_back(i);
 
-	for (GLfloat i : data)
-		std::cout << i << std::endl;
+	//for (GLfloat i : data)
+		//std::cout << i << std::endl;
 
 	std::vector<GLuint> triangles
 	{
@@ -122,14 +126,11 @@ int main()
 	glm::mat4 trans = glm::mat4(1.0f);
 	//trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
 
-	//
 	trans = glm::scale(trans, glm::vec3(0.5f, 0.5, 0.5));
-
-	double lastFrameTime = 0.0f;
 
 	window.SetVSync(true);
 
-	Engine engine;
+	double lastFrameTime = 0.0f;
 
 	while (!window.Closed())
 	{
@@ -137,11 +138,9 @@ int main()
 		double deltaTime = currentTime - lastFrameTime;
 		lastFrameTime = currentTime;
 
-		engine.Update();
+		Time::deltaTime = deltaTime;
 
-		
-
-		std::cout << (deltaTime * 1000) << " ms" << std::endl;
+		//std::cout << (deltaTime * 1000) << " ms" << std::endl;
 
 		//window.displayFPS();
 
