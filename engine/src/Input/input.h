@@ -4,8 +4,8 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
-#include "../Window/window.h"
-#include "../Math/math.h"
+#include "../Window/Window.h"
+#include "../Math/Math.h"
 
 using namespace valk::math;
 

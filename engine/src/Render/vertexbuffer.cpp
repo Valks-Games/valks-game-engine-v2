@@ -1,4 +1,4 @@
-#include "vertexbuffer.h"
+#include "VertexBuffer.h"
 
 namespace valk 
 {

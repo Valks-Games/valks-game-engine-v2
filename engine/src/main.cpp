@@ -3,15 +3,15 @@
 #include <iostream>
 #include <vector>
 
-#include "Render/shader.h"
-#include "Render/mesh.h"
-#include "Msc/common.h"
-#include "Window/window.h"
-#include "Math/math.h"
-#include "Input/input.h"
-#include "Render/vertexbuffer.h"
-#include "Render/indexbuffer.h"
-#include "Render/vertexarray.h"
+#include "Render/Shader.h"
+#include "Render/Mesh.h"
+#include "Msc/Common.h"
+#include "Window/Window.h"
+#include "Math/Math.h"
+#include "Input/Input.h"
+#include "Render/VertexBuffer.h"
+#include "Render/IndexBuffer.h"
+#include "Render/VertexArray.h"
 
 using namespace valk;
 

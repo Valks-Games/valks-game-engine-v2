@@ -3,8 +3,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "../Math/math.h"
-#include "../Render/mesh.h"
+#include "../Math/Math.h"
+#include "../Render/Mesh.h"
 
 #include <vector>
 

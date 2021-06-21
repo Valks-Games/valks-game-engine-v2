@@ -7,7 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include "../Math/math.h"
+#include "../Math/Math.h"
 
 namespace valk 
 {
