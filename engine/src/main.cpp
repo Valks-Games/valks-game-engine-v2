@@ -65,14 +65,9 @@ int main()
 #else
 	std::vector<GLfloat> positions 
 	{
-		 0.5f, -0.5f, 0.0f,
-		-0.5f, -0.5f, 0.0f,
-		 0.0f,  0.5f, 0.0f
-	};
-
-	std::vector<GLuint> triangles
-	{
-		0, 1, 2
+			0.5f, -0.5f, 0.0f, 1.0f,
+		-0.5f, -0.5f, 0.0f, 1.0f,
+			0.0f,  0.5f, 0.0f, 1.0f
 	};
 
 	std::vector<GLfloat> colors
@@ -81,6 +76,26 @@ int main()
 		0.0f, 1.0f, 0.0f, 1.0f,
 		0.0f, 0.0f, 1.0f, 1.0f
 	};
+
+	std::vector<GLfloat> data;
+
+
+	for (GLfloat i : colors)
+		data.push_back(i);
+
+	for (GLfloat i : data)
+		std::cout << i << std::endl;
+
+	std::vector<GLuint> triangles
+	{
+		0, 1, 2
+	};
+
+	std::vector<GLfloat> newVec;
+
+	newVec.push_back(positions[0]);
+
+	//puts(newVec[0]);
 
 	Mesh mesh;
 	mesh.positions = positions;
@@ -93,7 +108,7 @@ int main()
 	Mesh mesh(vertices, indices, GL_STATIC_DRAW);
 #else
 	VertexArray vao;
-	VertexBuffer* vbo = new VertexBuffer(mesh, 3);
+	VertexBuffer* vbo = new VertexBuffer(mesh, 4);
 	IndexBuffer ibo(mesh.triangles, 3);
 	vao.unbind();
 #endif
@@ -109,8 +124,20 @@ int main()
 	//
 	trans = glm::scale(trans, glm::vec3(0.5f, 0.5, 0.5));
 
+	double lastFrameTime = 0.0f;
+
+	window.setVSync(true);
+
 	while (!window.closed())
 	{
+		double currentTime = glfwGetTime();
+
+		double deltaTime = currentTime - lastFrameTime;
+
+		lastFrameTime = currentTime;
+
+		std::cout << (deltaTime * 1000) << " ms" << std::endl;
+
 		//window.displayFPS();
 
 		if (Input::getKeyDown(GLFW_KEY_ESCAPE))
