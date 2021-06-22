@@ -21,7 +21,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 include "vendor/glfw"
 include "vendor/glad"
 
-project "engine"
+project "Engine"
 	location "engine"
 	kind "ConsoleApp"
 	language "C++"
@@ -41,6 +41,7 @@ project "engine"
 		"vendor/glad/include",
 		"vendor/glfw/include",
 		"vendor/glm",
+		"vendor/spdlog/include"
 	}
 
 	links 
@@ -56,18 +57,31 @@ project "engine"
 
 	filter "system:windows"
 		systemversion "latest"
+		
 		defines
 		{
 			"VE_WIN"
 		}
-		links{"opengl32.lib"}
+		
+		links { "opengl32.lib" }
+		
+		disablewarnings -- Suppress spdlog's annoying warnings
+		{ 
+			"26451",
+			"26812",
+			"26498",
+			"26495"
+		} 
+		
 	filter "system:linux"
 		systemversion "latest"
+		
 		defines
 		{
 			"VE_LINUX"
 		}
-		links{"pthread","dl","GL","GLU","X11"}
+		
+		links { "pthread", "dl", "GL", "GLU", "X11" }
 
 	filter "configurations:Debug"
 		defines "VE_DEBUG"

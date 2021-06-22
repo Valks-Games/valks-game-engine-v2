@@ -1,5 +1,4 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include <spdlog/spdlog.h>
 #include <iostream>
 #include <vector>
 
@@ -7,9 +6,10 @@
 #include "Render/Shader.h"
 #include "Render/Mesh.h"
 #include "Msc/Common.h"
-#include "Window/Window.h"
+
 #include "Math/Math.h"
 #include "Input/Input.h"
+#include "Window/Window.h"
 #include "Render/VertexBuffer.h"
 #include "Render/IndexBuffer.h"
 #include "Render/VertexArray.h"
@@ -18,6 +18,9 @@
 #include "Core/GameObject.h"
 #include "Core/Transform.h"
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 using namespace valk;
 
 const GLubyte GLFW_VER_MAJOR = 4;
@@ -25,6 +28,8 @@ const GLubyte GLFW_VER_MINOR = 6;
 
 int main()
 {
+	spdlog::info("Hello!");
+
 	// Initialize GLFW
 	glfwInit();
 
@@ -156,7 +161,7 @@ int main()
 		auto timeValue = static_cast<float>(glfwGetTime());
 		auto pulse = (sin(timeValue) / 2.0f) + 0.5f;
 
-		trans = glm::rotate(trans, glm::radians<float>(0.01f * pulse), glm::vec3(0.0, 0.0, 1.0));
+		trans = glm::rotate(trans, glm::radians<float>(100.0f * pulse * (float)deltaTime), glm::vec3(0.0, 0.0, 1.0));
 
 		window.Clear();
 		shader.Use();
