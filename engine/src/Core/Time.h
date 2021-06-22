@@ -3,5 +3,5 @@
 class Time 
 {
 public:
-	static inline float deltaTime;
+	static inline double deltaTime;
 };
