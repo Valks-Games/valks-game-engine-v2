@@ -1,6 +1,6 @@
 #include "VertexBuffer.h"
 
-namespace valk 
+namespace Valk 
 {
 	VertexBuffer::VertexBuffer(Mesh mesh, GLuint componentCount) : componentCount(componentCount)
 	{

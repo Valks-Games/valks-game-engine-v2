@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace valk
+namespace Valk
 {
 	IndexBuffer::IndexBuffer(std::vector<GLuint> data, GLsizei count) : count(count)
 	{

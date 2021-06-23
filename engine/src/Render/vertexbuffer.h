@@ -8,7 +8,7 @@
 
 #include <vector>
 
-namespace valk 
+namespace Valk 
 {
 	class VertexBuffer 
 	{

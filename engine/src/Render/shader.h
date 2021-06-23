@@ -9,7 +9,7 @@
 #include <iostream>
 #include "../Math/Math.h"
 
-namespace valk 
+namespace Valk 
 {
 	enum class ShaderType { VERTEX, FRAGMENT, PROGRAM };
 

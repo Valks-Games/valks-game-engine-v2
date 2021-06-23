@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
-namespace valk::math
+namespace Valk::math
 {
 	struct vec2
 	{

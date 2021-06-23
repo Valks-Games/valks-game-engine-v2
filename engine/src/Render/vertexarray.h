@@ -6,7 +6,7 @@
 #include <vector>
 #include "VertexBuffer.h"
 
-namespace valk
+namespace Valk
 {
 	class VertexArray
 	{

@@ -1,6 +1,6 @@
 #include "mesh.h"
 
-namespace valk 
+namespace Valk 
 {
 	void Mesh::Init()
 	{

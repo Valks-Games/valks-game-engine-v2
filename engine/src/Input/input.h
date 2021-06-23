@@ -7,9 +7,9 @@
 #include "../Window/Window.h"
 #include "../Math/Math.h"
 
-using namespace valk::math;
+using namespace Valk::math;
 
-namespace valk 
+namespace Valk 
 {
 	constexpr unsigned int MAX_KEYS = 1024;
 	constexpr unsigned int MAX_BUTTONS = 32;

@@ -1,6 +1,6 @@
 #include "input.h"
 
-namespace valk 
+namespace Valk 
 {
 	Input::Input(Window* window) : cursorInWindow(false)
 	{

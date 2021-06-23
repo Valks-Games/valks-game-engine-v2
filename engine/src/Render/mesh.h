@@ -5,7 +5,7 @@
 
 #include "../Math/math.h"
 
-namespace valk 
+namespace Valk 
 {
 	class Mesh
 	{

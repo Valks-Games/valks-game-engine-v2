@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-namespace valk 
+namespace Valk 
 {
 	class Window
 	{

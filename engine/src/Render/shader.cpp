@@ -1,7 +1,7 @@
 #include "shader.h"
 #include "../Msc/common.h"
 
-namespace valk 
+namespace Valk 
 {
     Shader::Shader(const char* vertexPath, const char* fragmentPath) : id(0)
     {

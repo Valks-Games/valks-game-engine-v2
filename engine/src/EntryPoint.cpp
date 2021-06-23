@@ -1,7 +1,7 @@
-#include <spdlog/spdlog.h>
 #include <iostream>
 #include <vector>
 
+#include "Core/Log.h"
 #include "App.h"
 #include "Render/Shader.h"
 #include "Render/Mesh.h"
@@ -21,14 +21,18 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-using namespace valk;
+using namespace Valk;
 
 const GLubyte GLFW_VER_MAJOR = 4;
 const GLubyte GLFW_VER_MINOR = 6;
 
 int main()
 {
-	spdlog::info("Hello!");
+	Valk::Log::Init();
+
+	int a = 5;
+
+	VALK_CORE_ERROR("Test {0}", a);
 
 	// Initialize GLFW
 	glfwInit();

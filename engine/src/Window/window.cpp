@@ -1,6 +1,6 @@
 #include "window.h"
 
-namespace valk 
+namespace Valk 
 {
 	Window::Window(const char* title, int width, int height)
 	{
