@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <memory>
 
 #include "spdlog/spdlog.h"
@@ -13,6 +14,8 @@ namespace Valk
 		static void Init();
 
 		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return coreLogger; }
+
+		__declspec(dllexport) void Print();
 	private:
 		static std::shared_ptr<spdlog::logger> coreLogger;
 	};

@@ -2,7 +2,7 @@
 #include <vector>
 
 #include "Core/Log.h"
-#include "App.h"
+#include "EntryPoint.h"
 #include "Render/Shader.h"
 #include "Render/Mesh.h"
 #include "Msc/Common.h"
