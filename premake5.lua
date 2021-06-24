@@ -23,10 +23,9 @@ include "vendor/glad"
 
 project "Engine"
 	location "engine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "on"
 
 	targetdir ("bin")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -39,7 +38,6 @@ project "Engine"
 
 	includedirs
 	{
-		"%{prj.name}/src",
 		"vendor/glad/include",
 		"vendor/glfw/include",
 		"vendor/glm",
@@ -118,8 +116,11 @@ project "Sandbox"
 
 	includedirs
 	{
+		"vendor/glad/include",
+		"vendor/glfw/include",
+		"vendor/glm",
 		"vendor/spdlog/include",
-		"Valk/src"
+		"engine/src"
 	}
 
 	links
