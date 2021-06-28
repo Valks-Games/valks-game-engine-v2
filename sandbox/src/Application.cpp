@@ -4,7 +4,7 @@
 
 int main() 
 {
-	Valk::Print();
+	Valk::Log::Print();
 
 	std::cout << "Hello world" << std::endl;
 	std::cin.get();

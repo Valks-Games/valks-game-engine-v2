@@ -26,6 +26,7 @@ project "Engine"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -125,11 +126,21 @@ project "Sandbox"
 
 	links
 	{
+		"glfw",
+		"glad",
 		"Engine"
 	}
 
 	filter "system:windows"
 		systemversion "latest"
+		
+		disablewarnings -- Suppress spdlog's annoying warnings
+		{ 
+			"26451",
+			"26812",
+			"26498",
+			"26495"
+		} 
 		
 	filter "configurations:Debug"
 		defines "VE_DEBUG"

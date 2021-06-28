@@ -15,7 +15,7 @@ namespace Valk
 
 		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return coreLogger; }
 
-		__declspec(dllexport) void Print();
+		static void Print();
 	private:
 		static std::shared_ptr<spdlog::logger> coreLogger;
 	};
