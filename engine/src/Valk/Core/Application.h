@@ -18,6 +18,7 @@
 #include "Time.h"
 #include "GameObject.h"
 #include "Transform.h"
+#include "Script.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -26,6 +27,9 @@ namespace Valk
 {
 	class Application
 	{
+	public:
+		std::vector<Script> m_Scripts;
+
 	public:
 		Application();
 		~Application();

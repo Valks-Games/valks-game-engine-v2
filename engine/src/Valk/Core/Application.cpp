@@ -133,6 +133,13 @@ namespace Valk
 
 			//window.displayFPS();
 
+
+
+			
+
+
+
+
 			if (Input::GetKeyDown(GLFW_KEY_ESCAPE))
 				glfwSetWindowShouldClose(window.GLFWwindow, true);
 
