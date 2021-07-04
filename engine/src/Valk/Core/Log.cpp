@@ -1,3 +1,4 @@
+#include "vkpch.h"
 #include "Log.h"
 
 namespace Valk 

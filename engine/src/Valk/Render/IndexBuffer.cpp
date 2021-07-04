@@ -1,6 +1,5 @@
+#include "vkpch.h"
 #include "indexbuffer.h"
-
-#include <vector>
 
 namespace Valk
 {

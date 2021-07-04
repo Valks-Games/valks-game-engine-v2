@@ -1,9 +1,7 @@
 #pragma once
 
 #include "Component.h"
-#include <vector>
 #include <typeinfo>
-#include <iostream>
 
 class GameObject 
 {

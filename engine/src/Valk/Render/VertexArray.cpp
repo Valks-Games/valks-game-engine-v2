@@ -1,3 +1,4 @@
+#include "vkpch.h"
 #include "VertexArray.h"
 
 namespace Valk 

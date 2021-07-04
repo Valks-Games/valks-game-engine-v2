@@ -6,8 +6,6 @@
 #include "../Math/Math.h"
 #include "../Render/Mesh.h"
 
-#include <vector>
-
 namespace Valk 
 {
 	class VertexBuffer 

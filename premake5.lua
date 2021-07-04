@@ -26,6 +26,9 @@ project "Engine"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
+	
+	pchheader "vkpch.h"
+	pchsource "engine/src/vkpch.cpp"
 
 	targetdir ("bin")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -38,6 +41,7 @@ project "Engine"
 
 	includedirs
 	{
+		"engine/src",
 		"vendor/glad/include",
 		"vendor/glfw/include",
 		"vendor/glm",

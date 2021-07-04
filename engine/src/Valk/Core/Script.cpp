@@ -1,3 +1,4 @@
+#include "vkpch.h"
 #include "Script.h"
 
 namespace Valk 
