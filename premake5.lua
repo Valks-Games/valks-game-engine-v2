@@ -26,6 +26,7 @@ project "Engine"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
+	staticruntime "off"
 	
 	pchheader "vkpch.h"
 	pchsource "engine/src/vkpch.cpp"
@@ -107,6 +108,7 @@ project "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
+	staticruntime "off"
 
 	targetdir ("bin")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
