@@ -1,11 +1,11 @@
 [submodule "GLFW"]
-	path = engine/vendor/glfw
+	path = vendor/glfw
 	url = https://github.com/TheCherno/glfw
 	branch = master
 [submodule "glm"]
-	path = engine/vendor/glm
+	path = vendor/glm
 	url = https://github.com/g-truc/glm
 	branch = master
 [submodule "vendor/spdlog"]
-	path = engine/vendor/spdlog
+	path = vendor/spdlog
 	url = https://github.com/gabime/spdlog

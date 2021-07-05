@@ -18,15 +18,14 @@ workspace "ValkEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-include "engine/vendor/glfw"
-include "engine/vendor/glad"
+include "vendor/glfw"
+include "vendor/glad"
 
 project "Engine"
 	location "engine"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "off"
 	
 	pchheader "vkpch.h"
 	pchsource "engine/src/vkpch.cpp"
@@ -43,10 +42,10 @@ project "Engine"
 	includedirs
 	{
 		"engine/src",
-		"engine/vendor/glad/include",
-		"engine/vendor/glfw/include",
-		"engine/vendor/glm",
-		"engine/vendor/spdlog/include"
+		"vendor/glad/include",
+		"vendor/glfw/include",
+		"vendor/glm",
+		"vendor/spdlog/include"
 	}
 
 	links 
@@ -108,7 +107,6 @@ project "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "off"
 
 	targetdir ("bin")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -121,11 +119,10 @@ project "Sandbox"
 
 	includedirs
 	{
-		--"vendor/glad/include",
-		--"vendor/glfw/include",
-		--"vendor/glm",
-		--"vendor/spdlog/include",
-		"engine/vendor",
+		"vendor/glad/include",
+		"vendor/glfw/include",
+		"vendor/glm",
+		"vendor/spdlog/include",
 		"engine/src"
 	}
 
