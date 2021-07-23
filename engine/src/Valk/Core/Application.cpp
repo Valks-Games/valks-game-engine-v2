@@ -2,16 +2,16 @@
 #include "Application.h"
 
 #include "Log.h"
-#include "../Render/Shader.h"
-#include "../Render/Mesh.h"
-#include "../Msc/Common.h"
+#include "Render/Shader.h"
+#include "Render/Mesh.h"
+#include "Msc/Common.h"
 
-#include "../Math/Math.h"
-#include "../Input/Input.h"
-#include "../Window/Window.h"
-#include "../Render/VertexBuffer.h"
-#include "../Render/IndexBuffer.h"
-#include "../Render/VertexArray.h"
+#include "Math/Math.h"
+#include "Input/Input.h"
+#include "Window/Window.h"
+#include "Render/VertexBuffer.h"
+#include "Render/IndexBuffer.h"
+#include "Render/VertexArray.h"
 #include "EngineScript.h"
 #include "Time.h"
 #include "GameObject.h"
@@ -67,66 +67,45 @@ namespace Valk
 		// Shaders
 		Shader shader("./res/Shaders/shader.vert", "./res/Shaders/shader.frag");
 
-#if 0
-		std::vector<GLfloat> vertices{
-			 0.5f, -0.5f, 0.0f,   // bottom right
-			-0.5f, -0.5f, 0.0f,   // bottom left
-			 0.0f,  0.5f, 0.0f    // top 
-		};
-
-		std::vector<GLuint> indices{
-			0, 1, 2
-		};
-#else
-		std::vector<GLfloat> positions
+		static const GLfloat vertex_positions[]
 		{
-				0.5f, -0.5f, 0.0f, 1.0f,
-			-0.5f, -0.5f, 0.0f, 1.0f,
-				0.0f,  0.5f, 0.0f, 1.0f
+			-1.0f, -1.0f, 0.0f, 1.0f,
+			1.0f, -1.0f, 0.0f, 1.0f,
+			-1.0f, 1.0f, 0.0f, 1.0f,
+			-1.0f, -1.0f, 0.0f, 1.0f
 		};
 
-		std::vector<GLfloat> colors
+		static const GLfloat vertex_colors[]
 		{
-			1.0f, 0.0f, 0.0f, 1.0f,
-			0.0f, 1.0f, 0.0f, 1.0f,
-			0.0f, 0.0f, 1.0f, 1.0f
+			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 0.0f, 1.0f,
+			1.0f, 0.0f, 1.0f, 1.0f,
+			0.0f, 1.0f, 1.0f, 1.0f
 		};
 
-		std::vector<GLfloat> data;
-
-
-		for (GLfloat i : colors)
-			data.push_back(i);
-
-		//for (GLfloat i : data)
-			//std::cout << i << std::endl;
-
-		std::vector<GLuint> triangles
+		static const GLushort vertex_indices[]
 		{
 			0, 1, 2
 		};
 
-		std::vector<GLfloat> newVec;
+		GLuint ebo[1];
+		GLuint vao[1];
+		GLuint vbo[1];
 
-		newVec.push_back(positions[0]);
+		// Setup element array buffer
+		glGenBuffers(1, ebo);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo[0]);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(vertex_indices), vertex_indices, GL_STATIC_DRAW);
 
-		//puts(newVec[0]);
+		// Setup vertex attributes
+		glGenVertexArrays(1, vao);
+		glBindVertexArray(vao[0]);
 
-		Mesh mesh;
-		mesh.positions = positions;
-		mesh.colors = colors;
-		mesh.triangles = triangles;
-
-#endif
-
-#if 0
-		Mesh mesh(vertices, indices, GL_STATIC_DRAW);
-#else
-		VertexArray vao;
-		VertexBuffer* vbo = new VertexBuffer(mesh, 4);
-		IndexBuffer ibo(mesh.triangles, 3);
-		vao.Unbind();
-#endif
+		glGenBuffers(1, vbo);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_positions) + sizeof(vertex_colors), NULL, GL_STATIC_DRAW);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertex_positions), vertex_positions);
+		glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertex_positions), sizeof(vertex_colors), vertex_colors);
 
 		// Wireframe Mode
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -137,6 +116,7 @@ namespace Valk
 		//trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
 
 		trans = glm::scale(trans, glm::vec3(0.5f, 0.5, 0.5));
+		//trans = glm::translate(trans, glm::vec3(-3.0f, 0.0f, -5.0f));
 
 		window.SetVSync(true);
 
@@ -155,12 +135,6 @@ namespace Valk
 			//window.displayFPS();
 
 
-
-			
-
-
-
-
 			if (Input::GetKeyDown(GLFW_KEY_ESCAPE))
 				glfwSetWindowShouldClose(window.GLFWwindow, true);
 
@@ -173,27 +147,20 @@ namespace Valk
 			auto timeValue = static_cast<float>(glfwGetTime());
 			auto pulse = (sin(timeValue) / 2.0f) + 0.5f;
 
-			trans = glm::rotate(trans, glm::radians<float>(100.0f * pulse * (float)deltaTime), glm::vec3(0.0, 0.0, 1.0));
+			//trans = glm::rotate(trans, glm::radians<float>(100.0f * pulse * (float)deltaTime), glm::vec3(0.0, 0.0, 1.0));
 
 			window.Clear();
 			shader.Use();
 			shader.SetColor("color", 1, pulse, 0, 1);
 			shader.SetMat4("transform", glm::value_ptr(trans));
-#if 0
-			mesh.draw();
-#else
-			vao.Bind();
-			glDrawElements(GL_TRIANGLES, ibo.GetCount(), GL_UNSIGNED_INT, nullptr);
-			vao.Unbind();
-#endif
+
+			//
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+			//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, NULL);
 
 			window.Update();
 		}
 
-#if 0
-		mesh.clean();
-#else
-#endif
 		shader.Clean();
 
 		glfwTerminate();

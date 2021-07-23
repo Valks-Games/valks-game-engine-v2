@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-#include "../Math/math.h"
+#include "Math/math.h"
 
 namespace Valk 
 {

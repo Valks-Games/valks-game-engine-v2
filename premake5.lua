@@ -42,6 +42,7 @@ project "Engine"
 
 	includedirs
 	{
+		"engine/src/Valk",
 		"engine/src",
 		"vendor/glad/include",
 		"vendor/glfw/include",

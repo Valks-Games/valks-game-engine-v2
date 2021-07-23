@@ -7,7 +7,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "../Msc/common.h"
+#include "Msc/common.h"
 
 namespace Valk 
 {

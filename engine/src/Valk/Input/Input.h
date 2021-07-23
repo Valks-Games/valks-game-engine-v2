@@ -3,8 +3,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "../Window/Window.h"
-#include "../Math/Math.h"
+#include "Window/Window.h"
+#include "Math/Math.h"
 
 using namespace Valk::math;
 
