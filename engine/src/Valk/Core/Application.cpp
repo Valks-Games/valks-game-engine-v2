@@ -69,11 +69,15 @@ namespace Valk
 		// Shaders
 		Shader shader("./res/Shaders/shader.vert", "./res/Shaders/shader.frag");
 
+		// Left is negative
+		// Down is negative
+		// Center is (0,0)
+
 		static const GLfloat vertex_positions[]
 		{
-			-1.0f, -1.0f, 0.0f, 1.0f,
-			1.0f, -1.0f, 0.0f, 1.0f,
-			-1.0f, 1.0f, 0.0f, 1.0f
+			0.0f,  0.5f, 0.0f, 1.0f,
+			0.5f,  0.0f, 0.0f, 1.0f,
+			-0.5f, 0.0f, 0.0f, 1.0f
 		};
 
 		static const GLfloat vertex_colors[]
@@ -107,9 +111,9 @@ namespace Valk
 		glBufferSubData(GL_ARRAY_BUFFER, 0,                        sizeof(vertex_positions), vertex_positions);
 		glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertex_positions), sizeof(vertex_colors)   , vertex_colors);
 
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void*)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (void*)0);
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void*)sizeof(vertex_positions));
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (void*)sizeof(vertex_positions));
 		glEnableVertexAttribArray(1);
 
 		// Wireframe Mode
@@ -118,10 +122,6 @@ namespace Valk
 		window.SetClearColor(0, 0, 0, 1);
 
 		glm::mat4 trans = glm::mat4(1.0f);
-		//trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
-
-		trans = glm::scale(trans, glm::vec3(0.5f, 0.5, 0.5));
-		//trans = glm::translate(trans, glm::vec3(-3.0f, 0.0f, -5.0f));
 
 		window.SetVSync(true);
 
