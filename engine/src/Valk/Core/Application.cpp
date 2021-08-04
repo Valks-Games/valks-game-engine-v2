@@ -71,16 +71,14 @@ namespace Valk
 		{
 			-1.0f, -1.0f, 0.0f, 1.0f,
 			1.0f, -1.0f, 0.0f, 1.0f,
-			-1.0f, 1.0f, 0.0f, 1.0f,
-			-1.0f, -1.0f, 0.0f, 1.0f
+			-1.0f, 1.0f, 0.0f, 1.0f
 		};
 
 		static const GLfloat vertex_colors[]
 		{
 			1.0f, 1.0f, 1.0f, 1.0f,
 			1.0f, 1.0f, 0.0f, 1.0f,
-			1.0f, 0.0f, 1.0f, 1.0f,
-			0.0f, 1.0f, 1.0f, 1.0f
+			1.0f, 0.0f, 1.0f, 1.0f
 		};
 
 		static const GLushort vertex_indices[]
