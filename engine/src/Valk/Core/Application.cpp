@@ -21,6 +21,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#define LOG(x) std::cout << x << std::endl;
+
 const GLubyte GLFW_VER_MAJOR = 4;
 const GLubyte GLFW_VER_MINOR = 6;
 
@@ -102,8 +104,13 @@ namespace Valk
 		glGenBuffers(1, vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_positions) + sizeof(vertex_colors), NULL, GL_STATIC_DRAW);
-		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertex_positions), vertex_positions);
-		glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertex_positions), sizeof(vertex_colors), vertex_colors);
+		glBufferSubData(GL_ARRAY_BUFFER, 0,                        sizeof(vertex_positions), vertex_positions);
+		glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertex_positions), sizeof(vertex_colors)   , vertex_colors);
+
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void*)0);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void*)sizeof(vertex_positions));
+		glEnableVertexAttribArray(1);
 
 		// Wireframe Mode
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
